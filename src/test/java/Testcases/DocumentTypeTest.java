@@ -102,6 +102,7 @@ public class DocumentTypeTest extends CommonFunctions {
 			 
 		
 			 
+			 
 			    test.info("<b><font color = 'purple'>Test case-3 Verify if the Cancel button on the Create Country page is functioning correctly</b>");
 			    DocumentTypeObj.documentCancelOpt.click();
 				test.pass("Cancel Button is clicked.");
@@ -178,14 +179,15 @@ public class DocumentTypeTest extends CommonFunctions {
 	
 	
 	
-//	@AfterSuite
-//   	public void reportflush() {
-//   		reports.flush();
-//   	}
-//	@AfterTest
-//	public void close() {
-//		driver.close();
-//	}
-//	
+	@AfterSuite
+  	public void reportflush() {
+   		reports.flush();
+   	}
+	@AfterTest
+	public void close() {
+		driver.close();
+	}
+
+	
 }
  

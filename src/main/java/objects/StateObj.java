@@ -61,6 +61,15 @@ public class StateObj {
 	@FindBy (xpath="//span[text()='Save ']")
 	public static WebElement StatesaveBtn;
 	
+	@FindBy (xpath="(//p[text()='Sikkim'])[1]")
+	public static WebElement SelectOpt;
+	
+	@FindBy(xpath="//span[text()='OK']")
+	public static WebElement OkBtn;
+	
+	
+	
+	
 	//state data table
 	@FindBy(xpath="(//td[@class='ant-table-cell'][2])")
 	public static WebElement stateDatatable;
@@ -93,7 +102,7 @@ public class StateObj {
 	
 
 	//delete the country
-	@FindBy (xpath="((//button[@class='w-8 h-8 2xl:w-10 2xl:h-10 rounded-full vhcenter hover:bg-primaryalpha/20 dark:hover:bg-primaryalpha/30 text-accent transition-all duration-300'])[2])[1]")
+	@FindBy (xpath="//button[@class='w-8 h-8 2xl:w-10 2xl:h-10 rounded-full vhcenter hover:bg-primaryalpha/20 dark:hover:bg-primaryalpha/30 text-accent transition-all duration-300'][2]")
 	public static WebElement StateDeleteOpt;
 	
 	@FindBy (xpath="//span[contains(text(), 'Confirm')]")

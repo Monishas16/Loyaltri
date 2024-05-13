@@ -111,87 +111,99 @@ public void eventlist() throws Exception {
 		
 	
 		
-//		test.info("<b><font color = 'purple'>Test case-4 Verify whether the user can successfully create a new State</b>");
-//	    StateObj.createState.click();
-//		test.pass("Create country button clicked");
-//	
-//		
-////		country selection dropdown
-//		StateObj.countryDD.click();
-//		
-//		for (int i = 0; i < StateObj.StatedropDown.size(); i++) {
-//	    	
-//	        if (StateObj.StatedropDown.get(i).getText().equalsIgnoreCase(properties.getProperty("country"))) {
-//	        	
-//	        	StateObj.StatedropDown.get(i).click();
-//	        	
-//	            break;
-//	    
-//	
-//	            
-//       }
-//	
-//	}
-////create state		
-//		StateObj.State.sendKeys(properties.getProperty("state"));
-//		test.pass("state enterd  successfully");
-//		Thread.sleep(3000);
-//
-//		StateObj.city.sendKeys(properties.getProperty("city1"));
-//		test.pass("city1 enterd  successfully");
-//		Thread.sleep(3000);
-//
-//		StateObj.StateDesc.sendKeys(properties.getProperty("Description"));
-//		test.pass("Description enterd  successfully");
-//		Thread.sleep(3000);
-//		
-//		StateObj.StatesaveBtn.click();
-//		test.pass("Save button is clicked");
-//		Thread.sleep(5000);
-//		
-//search
-
+		test.info("<b><font color = 'purple'>Test case-4 Verify whether the user can successfully create a new State</b>");
+	    StateObj.createState.click();
+		test.pass("Create country button clicked");
+	
 		
+//		country selection dropdown
+		StateObj.countryDD.click();
+		
+		for (int i = 0; i < StateObj.StatedropDown.size(); i++) {
+	    	
+	        if (StateObj.StatedropDown.get(i).getText().equalsIgnoreCase(properties.getProperty("country"))) {
+	        	
+	        	StateObj.StatedropDown.get(i).click();
+	        	
+	            break;
+	    
+	
+	            
+       }
+	
+	}
+//create state		
+		StateObj.State.sendKeys(properties.getProperty("state"));
+		test.pass("state enterd  successfully");
+		Thread.sleep(3000);
+
+		StateObj.city.sendKeys(properties.getProperty("city1"));
+		test.pass("city1 enterd  successfully");
+		Thread.sleep(3000);
+
+		StateObj.StateDesc.sendKeys(properties.getProperty("Description"));
+		test.pass("Description enterd  successfully");
+		Thread.sleep(3000);
+		
+		StateObj.StatesaveBtn.click();
+		test.pass("Save button is clicked");
+		Thread.sleep(5000);
+		
+//search
+	
     	String name = properties.getProperty("search_box");
 		System.out.println(name);
 		
 		
-		StateObj.StatesearchBox.click();
-		
-		StateObj.StatesearchBox.sendKeys(properties.getProperty("search_box"));
-		Thread.sleep(5000);
-
+//		StateObj.StatesearchBox.click();
+//		
+//		StateObj.StatesearchBox.sendKeys(properties.getProperty("search_box"));
+//		Thread.sleep(5000);
+//
 //        Assert.assertEquals(StateObj.StatesearchBox.getAttribute() , properties.getProperty("search_box"), "Search text mismatch");
 
 //        
         
 		
         
-//	String actCountryName=StateObj.stateDatatable.getText();
-//	if(actCountryName.equals(name)) { 		
-//		test.pass("New country displayed in data table.");
-//		}
-//	else {
-//            test.fail("<font color='red'>Create new Country failed.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());		}
-//     	 Thread.sleep(4000);
+	String actCountryName=StateObj.stateDatatable.getText();
+	if(actCountryName.equals(name)) { 		
+		test.pass("New country displayed in data table.");
+		}
+	else {
+            test.fail("<font color='red'>Create new Country failed.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());		}
+     	 Thread.sleep(2000);
+		
+		StateObj.StatesearchBox.sendKeys(properties.getProperty("search_box"));
+		test.pass("search the value  successfully");
+		Thread.sleep(2000);
+		
+		
+		StateObj.SelectOpt.click();
+		test.pass("Click  the Option  successfully");
+        Thread.sleep(3000);
+        
+		StateObj.OkBtn.click();
+        Thread.sleep(3000);
+        
+
+
+        
+        
+        
+
+//Update country		
+        test.info("<b><font color = 'purple'>Test case-5 Verify the Update State functionality </b>");
+        StateObj.StateeditBtn.click();
+		test.pass("Edit button clicked");
+		Thread.sleep(3000);
 //		
-//
-//		StateObj.StatesearchBox.sendKeys(properties.getProperty("search_box"));
-//		test.pass("search the value  successfully");
-//		Thread.sleep(5000);
-//
-////Update country		
-//        test.info("<b><font color = 'purple'>Test case-5 Verify the Update State functionality </b>");
-//        StateObj.StateeditBtn.click();
-//		test.pass("Edit button clicked");
-//		Thread.sleep(3000);
-//		
-//		StateObj.State.sendKeys(Keys.CONTROL + "a");
+		StateObj.State.sendKeys(Keys.CONTROL + "a");
 //// Delete the selected text
-//		StateObj.State.sendKeys(Keys.DELETE);
+		StateObj.State.sendKeys(Keys.DELETE);
 //
-//// StateObj.State.clear();
-//		Thread.sleep(3000);
+         StateObj.State.clear();
+		Thread.sleep(3000);
 //		
 //
 //		StateObj.State.sendKeys(properties.getProperty("update_state"));
@@ -199,39 +211,71 @@ public void eventlist() throws Exception {
 //		StateObj.city.sendKeys(Keys.CONTROL + "a");
 //		StateObj.city.sendKeys(Keys.DELETE);
 //		
-//		Thread.sleep(3000);
-//        StateObj.city.clear();
-//		StateObj.city.sendKeys(properties.getProperty("update_city"));
+//
+		Thread.sleep(3000);
+        StateObj.city.clear();
+		StateObj.city.sendKeys(properties.getProperty("update_city"));
 //		
-//		Thread.sleep(3000);
-//		StateObj.StateDesc.sendKeys(Keys.CONTROL + "a");
-//		StateObj.StateDesc.sendKeys(Keys.DELETE);
+		Thread.sleep(3000);
+		StateObj.StateDesc.sendKeys(Keys.CONTROL + "a");
+		StateObj.StateDesc.sendKeys(Keys.DELETE);
 //		
-//		Thread.sleep(3000);
-//		StateObj.StateDesc.sendKeys(properties.getProperty("upd_Description"));
-//		test.pass("Update the state sucessfully");
-//		Thread.sleep(6000);
+		Thread.sleep(3000);
+		StateObj.StateDesc.sendKeys(properties.getProperty("upd_Description"));
+		test.pass("Update the state sucessfully");
+		Thread.sleep(6000);
+		StateObj.StatesaveBtn.click();
+
+		
+//delete the state
+	
+		
+		test.info("<b><font color = 'purple'>Test case-6 check the delete button is displyed </b>");
+		StateObj.StatesearchBox.sendKeys(properties.getProperty("search_box"));
+		StateObj.StateDeleteOpt.click();
+		test.pass("Delete button clicked.");
+		
+		String searchValue = properties.getProperty("search_box");
+		boolean dataNotDeleted = verifyDataNotDeleted(searchValue); // Implement this method to verify if data is not deleted
+		if (dataNotDeleted) { 
+		    test.pass("Data not deleted. No button functionality working");
+		} else {
+		    test.fail("<font color='red'>No button click failed.</font>", MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver, screenShot)).build());
+		}
+
+		StateObj.StateDeleteOpt.click();
+		// Delete confirm button
+		StateObj.StateConfirmOpt.click();
+
+
+		
+
 		
 	
 		
-	for (int i = 0; i < StateObj.stateDatatab.size(); i++) {
-	    	
-	       if (StateObj.stateDatatab.get(i).getText().equalsIgnoreCase(properties.getProperty("search_box"))) {
-	        	
-	        if (StateObj.stateDescab.get(i).getText().equalsIgnoreCase(properties.getProperty("search_box"))) {
-	        		
-	        		StateObj.ToggleBtn.get(i).click();
-	        		
-//	        	StateObj.StateeditBtn.click();
-	        		
-	        		Thread.sleep(3000);
-	        	}
-	        	
-	        }
-	       break;
+//	for (int i = 0; i < StateObj.stateDatatab.size(); i++) {
+//	    	
+//	       if (StateObj.stateDatatab.get(i).getText().equalsIgnoreCase(properties.getProperty("search_box"))) {
+//	        	
+//	        if (StateObj.stateDescab.get(i).getText().equalsIgnoreCase(properties.getProperty("search_box"))) {
+//	        		
+//	        		StateObj.ToggleBtn.get(i).click();
+//	        		
+////	        	StateObj.StateeditBtn.click();
+//	        		
+//	        		Thread.sleep(3000);
+//	        	}
+//	        	
+//	        }
+//	       break;
+//	}
 	}
-	}
+private boolean verifyDataNotDeleted(String searchValue) {
+	// TODO Auto-generated method stub
+	return false;
+}
 
+//
 //delete 
 		
 		
@@ -259,10 +303,10 @@ public void eventlist() throws Exception {
 		}
 		 
 	 
-//		@AfterTest
-//		public void close() {
-//			
-//			driver.close();
-//		
-//		}
+		@AfterTest
+		public void close() {
+			
+			driver.close();
+		
+		}
 }

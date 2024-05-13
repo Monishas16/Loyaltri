@@ -211,6 +211,8 @@ public class StateTest  extends CommonFunctions{
         
     
       
+       
+                Thread.sleep(3000);
         
 	
         
@@ -228,7 +230,8 @@ public class StateTest  extends CommonFunctions{
 				if(actCountryNameUpdate.equals(newStateName+"Test")) { 
 					test.pass("Data not deleted.No button functionality working");
 				}else {
-		            test.fail("<font color='red'>No button click failed.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
+		   
+					test.fail("<font color='red'>No button click failed.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
 
 				}
 				
@@ -244,6 +247,7 @@ public class StateTest  extends CommonFunctions{
 		
 		
 		
+				
 				
 				
 		
