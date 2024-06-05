@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver; 
 import org.openqa.selenium.WebElement;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Keys;
@@ -203,7 +203,7 @@ public void eventlist() throws Exception {
 		StateObj.State.sendKeys(Keys.DELETE);
 //
          StateObj.State.clear();
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 //		
 //
 //		StateObj.State.sendKeys(properties.getProperty("update_state"));
