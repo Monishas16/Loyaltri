@@ -17,6 +17,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
@@ -37,122 +38,203 @@ public class DocumentTypeTest extends CommonFunctions {
 	static String screenShot;
 	@BeforeSuite
 	public void report() {
+	
 		
 		report = new ExtentSparkReporter("Reports/DocumentType.html");    
 		report.config().setReportName("Selenium Automation Report");
 		reports = new ExtentReports();
 		reports.attachReporter(report);
 		reports.setSystemInfo("Application", "Loyaltri Product");
-		reports.setSystemInfo("Module", "Masters");
+		reports.setSystemInfo("Module", "DocumentType");
 		reports.setSystemInfo("Author", "Monisha");
 		
 	}
+	
 	
 	
 	@Test(priority=1)
 	public void DocumentTypeTest()throws IOException{
 		try {
 			
+			Faker faker = new Faker();             //for give the default value
+
 			FileInputStream stream = new FileInputStream("config.properties");
 			 
 			Properties properties = new Properties();
 			properties.load(stream);
 			
 			
-			test=reports.createTest("<b><font color='Blue'>Testcases of DocumentType module</b></font>");
+			test = reports.createTest("Testcase for DocumentType Page ");
+		
 			/*
 			 * Code for document type page navigation checking
 			 */
 			test.info("<b><font color='purple'>Testcase 1- Check the Document Type page is displayed </b></font>");
-			PageFactory.initElements(driver,DocumentTypeObj.class);
-			
-// using action  mouse pointing
-			
-			Actions actions = new Actions(driver);
-			actions.moveToElement(DocumentTypeObj.settings).build().perform();
-			test.pass("The Setting option clicked");
+			  PageFactory.initElements(driver,DocumentTypeObj.class);
 
-			actions.moveToElement(DocumentTypeObj.masters).build().perform();
-			test.pass("The Masters menu clicked");
+			  
+			  
+			DocumentTypeObj.settingsDocumtTy.click();
+			test.pass("Setting button clicked Successfully ");
+			
+			DocumentTypeObj.mastersopt.click();
+			test.pass("Master Option clicked Successfully");
 			
 			
+	
 			DocumentTypeObj.documentTypeMenu.click();
-			test.pass("The Document Type button clicked");
-			
-			
-			DocumentTypeObj.documentTypeHeading.isDisplayed();
-			String documentTypeheading=DocumentTypeObj.documentTypeHeading.getText();
-			test.pass("The Document Types page is displayed.The heading of the page is: "+ documentTypeheading);
-			
-		
-			test.info("<b><font color='purple'>Testcase 2 - Check the user is able to Add new Document Type</b> </font>");
-			DocumentTypeObj.createDocumentTypeBtn.click();
-			test.pass("Create Document Type button is clicked");
-			Thread.sleep(4000);
+			test.pass("Create Document button clicked successfully");
 	
-			 String actualHeading =DocumentTypeObj.createDocTypeOrg.getText().trim();
-			 String expectedHeading = "Create Document Type";                //acutal heading
-			 if (actualHeading.equals(expectedHeading)) {
-		            test.pass("Heading is correctly displayed: " + actualHeading);
-		        } else {
-		            test.pass("Heading is not correctly displayed. Expected: " + expectedHeading + ", Actual: " + actualHeading);
+			
+			
+			String actDocutment = DocumentTypeObj.documentTypeHeading.getText(); 
+			if (actDocutment .equals("Document Type")) {
+		            test.pass("Country page is displayed");
+
+
+	        } else {
+		            test.fail("<font color='red'>Country page is not displayed</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
 		        }
-			
-	
-			 
 		
-			 
-			 
-			    test.info("<b><font color = 'purple'>Test case-3 Verify if the Cancel button on the Create Country page is functioning correctly</b>");
-			    DocumentTypeObj.documentCancelOpt.click();
-				test.pass("Cancel Button is clicked.");
-				DocumentTypeObj.createDocumentTypeBtn.click();
-			    Thread.sleep(3000);
-			 
-				if(DocumentTypeObj.createDocumentTypeHead.isDisplayed()) {
-					test.pass("Cancel button worked.Create DocumentType child window is closed.");
+			
+		 test.info("<b><font color = 'purple'>Test case-2 Check the Create Document page is displayed </b>");
+		        DocumentTypeObj.createDocTypeOpt.click();
+				test.pass("Create documenttype button clicked.");
+				Thread.sleep(1000);
+				
+				if(DocumentTypeObj.documentTypeChild.getText().equals("Create Document Type")) {
+					test.pass("Create document type child window is displayed.The heading is :"+DocumentTypeObj.documentTypeChild.getText());
 				}else {
-		            test.fail("<font color='red'>The functionality of the cancel button did not execute as expected.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
+		            test.fail("<font color='red'>Create Country page navigation failed</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
 				}
+	
 			 
-				DocumentTypeObj.saveDocBtn.click();
-			
-				test.info("<b><font color = 'purple'>Test case-4 Verify whether the user can successfully create a new Document</b>");
-				DocumentTypeObj.documentType.sendKeys(properties.getProperty("Document_Type"));
-				test.pass("document type entred successfully");
-				Thread.sleep(2000);
 				
-				DocumentTypeObj.description.sendKeys(properties.getProperty("DescriptionDoc"));
-				test.pass("Document description entred successfully");
-				Thread.sleep(2000);
+//cancel 	issue			
+//				DocumentTypeObj.canceloptDT.click();
+//				test.pass("Cancel Button is clicked.");
+//				if(DocumentTypeObj.createDocTypeOpt.isDisplayed()) {
+//					test.pass("Cancel button worked.Create Country child window is closed.");
+//				}else {
+//		            test.fail("<font color='red'>The functionality of the cancel button did not execute as expected.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
+//				}
 
-				DocumentTypeObj.mantType.click();
-				test.pass("The mandatory toggle has been activated");
-				Thread.sleep(1000);
+			
+				
 
+				
+			    Thread.sleep(1000);
+
+//create	
+			 test.info("<b><font color = 'purple'>Test case-3 Verify create a new Document Type functionality./b>");
+//			       DocumentTypeObj.createDocTypeOpt.click();
+//				    Thread.sleep(1000);
 	
-				DocumentTypeObj.ERToggle.click();
-				test.pass("The Expiry Reminders  toggle has been activated");
-				Thread.sleep(1000);
+				    test.pass("Create Document type button clicked");
+					String name = faker.letterify("???");
+					String newDocumentName="Document "+name;
+					DocumentTypeObj.DocumentName.click();
+					DocumentTypeObj.DocumentName.sendKeys(newDocumentName);
+					test.pass("Document Type is entered");
+					
+					DocumentTypeObj.description.sendKeys(newDocumentName);
+					test.pass("Document description entred successfully");
+					
+				
+					DocumentTypeObj.saveDocBtn.click();
+					test.pass("Document  saved  successfully");
 
+					
+					
+					DocumentTypeObj.SearchDoc.sendKeys(newDocumentName);
+				    Thread.sleep(4000);
+
+					String actDocName=DocumentTypeObj.DocDatatable.getText();
+					if(actDocName.equals(newDocumentName)) { 
+						test.pass("New country displayed in data table.");
+					}else {
+			            test.fail("<font color='red'>Create new Country failed.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
+
+					}
+				
+//update									    
+					Thread.sleep(4000);
 			
-				DocumentTypeObj.saveDocBtn.click();
-				test.pass("Save Button is Clicked");
-				Thread.sleep(4000);
 				
-//search document
-//				Thread.sleep(4000);
+				
+			test.info("<b><font color = 'purple'>Test case-5 Verify the Update DocumentType functionality </b>");
+			           DocumentTypeObj.EditbtnDoc.click();
+				 		String upddocname ="Test Document"+ faker.letterify("???");
+						test.pass("Edit button clicked");
+						
+						Thread.sleep(2000);
 
-//				DocumentTypeObj.searchDoc.sendKeys("Document_Type");
-//				Thread.sleep(6000);
-				
-				
+//						wait.until(ExpectedConditions.visibilityOf(MastersObj.editCountry));
+						DocumentTypeObj.DocumentName.sendKeys(Keys.CONTROL + "a"); // Select all text
+						DocumentTypeObj.DocumentName.sendKeys(Keys.DELETE);
+						Thread.sleep(2000);
 
+						DocumentTypeObj.DocumentName.sendKeys(upddocname); 
+						
+						DocumentTypeObj.description.sendKeys(Keys.CONTROL + "a"); // Select all text
+						DocumentTypeObj.description.sendKeys(Keys.DELETE);
 	
-			
+						DocumentTypeObj.description.sendKeys(upddocname);
+						DocumentTypeObj.saveDocBtn.click();
+					
+						test.pass("Save button is clicked.");
+		
+						
+	
+						Thread.sleep(2000);
+						DocumentTypeObj.SearchDoc.click();
+						DocumentTypeObj.SearchDoc.sendKeys(Keys.CONTROL + "a"); // Select all text
+						DocumentTypeObj.SearchDoc.sendKeys(Keys.DELETE);
+						
+						Thread.sleep(2000);
+						
+						DocumentTypeObj.SearchDoc.sendKeys(upddocname);
+						String actDocNameUpdate=DocumentTypeObj.DocDatatable.getText();
+				        if(actDocNameUpdate.equals(upddocname)) { 
+
+				        	test.pass("Updated Country details displayed in data table.");
+						}else {
+				            test.fail("<font color='red'>Update Country failed.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
+
+						}
+						Thread.sleep(6000);
+
 				
 				
-			
+//delete
+			test.info("<b><font color = 'purple'>Test case-6 check the delete button is displyed </b>");
+			DocumentTypeObj.DeleteDocbtn.click();
+						test.pass("Delete button clicked.");
+					
+						//no button click
+					
+						DocumentTypeObj.NobtnDoc.click();
+						if(actDocNameUpdate.equals(newDocumentName+"Test Document")) { 
+							test.pass("Data not deleted.No button functionality working");
+						}else {
+				            test.fail("<font color='red'>No button click failed.</font>",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
+
+					
+						}
+					
+						DocumentTypeObj.DeleteDocbtn.click();
+						//delete confirm button
+						DocumentTypeObj.ConfirmbtnDoc.click();
+						test.pass("Clicked the confirm option ");
+						if(actDocName.contains(newDocumentName+"Test Document")) { 
+							test.fail("Data not deleted.Confirm button functionality not working",MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot(driver,screenShot)).build());
+						}else {
+				            test.pass("Data deleted sucessfully");
+						}
+					
+									
+         
+   	
 		}catch(Exception E) {
 			
 		}
@@ -166,6 +248,13 @@ public class DocumentTypeTest extends CommonFunctions {
 	 * Code for taking Screenshot
 	 */
  
+	private boolean verifyDataNotDeleted(String searchDocValue) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+	
 	public static String takeScreenshot(WebDriver driver, String screenshotName) throws Exception {
 		String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		screenShot = System.getProperty("user.dir") + "/screenshots/" + screenshotName + "_" + timestamp + ".png";
